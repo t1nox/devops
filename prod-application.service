@@ -1,0 +1,13 @@
+[Unit]
+Description=web-sites daemon
+After=network.target
+
+[Service]
+User=application
+Group=nginx
+Type=forking
+WorkingDirectory=/home/application/app
+ExecStart=/home/application/venv/bin/gunicorn --workers 7 --bind 127.0.0.1:8001 run:app 
+
+[Install]
+WantedBy=multi-user.target
